@@ -4,11 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProgressNotice"
+        xmlns:customcontrols="clr-namespace:ProgressNotice.CustomControls"
         mc:Ignorable="d"
         Title="ProgressNotice - main page"
         WindowStartupLocation="CenterScreen"
-        Height="450" Width="800">
+        WindowStyle="None"
+        Height="450" Width="800"
+        WindowChrome.IsHitTestVisibleInChrome="False">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Name="TopMenuRowDef" Height="25"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <customcontrols:TopMenu x:Name="TopMenuTM"/>
     </Grid>
 </Window>
