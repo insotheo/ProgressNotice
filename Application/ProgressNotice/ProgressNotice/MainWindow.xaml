@@ -10,10 +10,10 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Height="450" Width="800"
-        WindowChrome.IsHitTestVisibleInChrome="False">
+        Background="{StaticResource WindowBackgroundDefalutColor}">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Name="TopMenuRowDef" Height="25"/>
+            <RowDefinition Name="TopMenuRowDef" Height="35"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <customcontrols:TopMenu x:Name="TopMenuTM"/>

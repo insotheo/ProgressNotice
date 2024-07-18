@@ -1,4 +1,23 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+
+    <SolidColorBrush x:Key="WindowBackgroundDefalutColor"
+                     Color="#878787"/>
+
+    <SolidColorBrush x:Key="RadialWindowBackgroundDefColor"
+                     Color="#293d82"/>
+
+    <SolidColorBrush x:Key="ButtonDefaultBackgroundColor"
+                     Color="#479055"/>
+
+    <SolidColorBrush x:Key="RadialButtonDefColor"
+                     Color="#37653f"/>
+
+    <SolidColorBrush x:Key="ForegroundDefault"
+                     Color="#e0e0e0"/>
+
+    <SolidColorBrush x:Key="RadialForegroundDefault"
+                     Color="#ffffff"/>
+
+
 </ResourceDictionary>

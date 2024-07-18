@@ -10,8 +10,6 @@ namespace ProgressNotice.CustomControls
     /// </summary>
     public partial class TopMenu : UserControl
     {
-
-        private double headerHeight;
         private bool windowStateChangedByControl = false;
 
         public TopMenu()
@@ -51,11 +49,13 @@ namespace ProgressNotice.CustomControls
                 parent.WindowState = WindowState.Maximized;
                 parent.WindowStyle = WindowStyle.None;
                 windowStateChangedByControl = false;
+                SetResizeBtnIcon();
                 return;
             }
             parent.WindowStyle = WindowStyle.SingleBorderWindow;
             parent.WindowState = WindowState.Normal;
             parent.WindowStyle = WindowStyle.None;
+            SetResizeBtnIcon();
         }
 
         private void TopAreaMouseDown(object sender, MouseButtonEventArgs e)
@@ -80,14 +80,13 @@ namespace ProgressNotice.CustomControls
 
                 }
                 Window.GetWindow(this)?.DragMove();
+                SetResizeBtnIcon();
             }
         }
 
-        internal void BaseDataSet(double headerHeight)
+        internal void Setup()
         {
             WindowTitleTB.Text = Window.GetWindow(this).Title;
-            this.headerHeight = headerHeight;
-            Window.GetWindow(this).ResizeMode = ResizeMode.CanResizeWithGrip;
             Window.GetWindow(this).StateChanged += ParentWindowStateChanged;
         }
 
@@ -103,10 +102,24 @@ namespace ProgressNotice.CustomControls
                     Window.GetWindow(this).WindowStyle = WindowStyle.SingleBorderWindow;
                     Window.GetWindow(this).WindowState = WindowState.Maximized;
                     Window.GetWindow(this).WindowStyle = WindowStyle.None;
+                    SetResizeBtnIcon();
                     windowStateChangedByControl = false;
                     return;
                 }
             }
         }
+
+        private void SetResizeBtnIcon()
+        {
+            if(Window.GetWindow(this).WindowState == WindowState.Maximized)
+            {
+                ResizeBtn.Content = "◱";
+            }
+            else
+            {
+                ResizeBtn.Content = "▭";
+            }
+        }
+
     }
 }

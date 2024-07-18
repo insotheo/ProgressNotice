@@ -5,14 +5,51 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ProgressNotice.CustomControls"
              mc:Ignorable="d" 
-             d:DesignHeight="70" d:DesignWidth="700">
-    <Border CornerRadius="5" x:Name="TopArea" Background="Transparent">
-        <Grid>
-            <TextBlock Name="WindowTitleTB" VerticalAlignment="Center" Foreground="Black" FontSize="16" FontWeight="Bold"/>
+             d:DesignHeight="40" d:DesignWidth="700">
+    <Border CornerRadius="0 0 5 5" x:Name="TopArea">
+        <Border.Background>
+            <SolidColorBrush Opacity="0.25" Color="Black"/>
+        </Border.Background>
+        <Grid Margin="0 -1">
+            <TextBlock Name="WindowTitleTB" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Content="_" Name="HideBtn"/>
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type Button}"
+                           BasedOn="{StaticResource DefaultButtonStyle}"
+                           x:Key="CloseButtonStyle">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Margin="{TemplateBinding Margin}"
+                                        CornerRadius="3">
+                                        <TextBlock Text="{TemplateBinding Content}"
+                                           FontSize="{TemplateBinding FontSize}"
+                                           FontWeight="{TemplateBinding FontWeight}"
+                                           FontStyle="{TemplateBinding FontStyle}"
+                                           Foreground="{TemplateBinding Foreground}"
+                                           Margin="3"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontFamily="Roboto"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#ba002e"/>
+                                            <Setter Property="BorderBrush" Value="#480012"/>
+                                            <Setter Property="Foreground" Value="{StaticResource RadialForegroundDefault}"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </StackPanel.Resources>
+                <Button Content="-" Name="HideBtn"/>
                 <Button Content="▭" Name="ResizeBtn"/>
-                <Button Content="X" Name="CloseBtn"/>
+                <Button Content="X" Name="CloseBtn" Style="{StaticResource CloseButtonStyle}"/>
             </StackPanel>
         </Grid>
     </Border>

@@ -10,7 +10,7 @@ namespace ProgressNotice
         public MainWindow()
         {
             InitializeComponent();
-            TopMenuTM.BaseDataSet(TopMenuRowDef.Height.Value);
+            TopMenuTM.Setup();
         }
     }
 }
