@@ -25,7 +25,7 @@ namespace ProgressNotice.CustomControls
         private void CloseBtnClick(object sender, RoutedEventArgs e)
         {
             Window.GetWindow(this).WindowStyle = WindowStyle.SingleBorderWindow;
-            Environment.Exit(0);
+            Window.GetWindow(this).Close();
         }
 
         private void HideBtnClick(object sender, RoutedEventArgs e)
@@ -88,6 +88,13 @@ namespace ProgressNotice.CustomControls
         {
             WindowTitleTB.Text = Window.GetWindow(this).Title;
             Window.GetWindow(this).StateChanged += ParentWindowStateChanged;
+        }
+
+        internal void SetButtonsVisibility(bool hide, bool resize, bool close)
+        {
+            HideBtn.Visibility = hide ? Visibility.Visible : Visibility.Hidden;
+            ResizeBtn.Visibility = resize ? Visibility.Visible : Visibility.Hidden;
+            CloseBtn.Visibility = close ? Visibility.Visible : Visibility.Hidden;
         }
 
         private void ParentWindowStateChanged(object? sender, EventArgs e)

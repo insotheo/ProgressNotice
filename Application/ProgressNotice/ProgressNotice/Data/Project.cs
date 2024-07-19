@@ -7,7 +7,7 @@ namespace ProgressNotice.Data
         public bool IsStarred;
 
         public string? Title;
-        public string? Token;
+        public string Token;
         public string? DescriptionMD;
 
         public DateTime? LastChangeDate;

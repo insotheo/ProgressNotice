@@ -36,6 +36,11 @@
                             <Setter Property="BorderBrush" Value="{StaticResource RadialWindowBackgroundDefColor}"/>
                             <Setter Property="Foreground" Value="{StaticResource RadialForegroundDefault}"/>
                         </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="{StaticResource RadialButtonDefColor}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource RadialWindowBackgroundDefColor}"/>
+                            <Setter Property="Foreground" Value="{StaticResource RadialForegroundDefault}"/>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

@@ -35,7 +35,7 @@
                 <TextBlock Text="Your projects" FontSize="24" FontWeight="SemiBold"/>
                 <ListBox x:Name="ProjectsLB" Grid.Row="1" Background="Transparent" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
                 <StackPanel Orientation="Horizontal" Grid.Row="2">
-                    <Button Content="Add"/>
+                    <Button Content="Add" x:Name="AddNewProjectBtn"/>
                     <Button Content="Remove selected"/>
                 </StackPanel>
             </Grid>

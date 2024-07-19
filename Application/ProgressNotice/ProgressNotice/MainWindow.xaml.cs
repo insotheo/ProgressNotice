@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using ProgressNotice.Data;
-using Newtonsoft.Json;
 using System.IO;
+using Newtonsoft.Json;
+
+using static ProgressNotice.Data.GlobalProjectVars;
 
 namespace ProgressNotice
 {
@@ -11,15 +13,51 @@ namespace ProgressNotice
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private List<ProjectLBI>? previews;
+
         public MainWindow()
         {
+            if (!Directory.Exists(_projectsPath))
+            {
+                Directory.CreateDirectory(_projectsPath);
+            }
+            if (!File.Exists(_projectsListPath))
+            {
+                using (FileStream fs = File.Create(_projectsListPath))
+                {
+                    using(StreamWriter sw = new StreamWriter(fs))
+                    {
+                        sw.Write(JsonConvert.SerializeObject(new List<ProjectLBI>()));
+                    }
+                }
+            }
+
+            previews = ProjectLBI.GetListOfProjects();
+
             InitializeComponent();
             TopMenuTM.Setup();
 
-            Project prj = new Project("Hello, World!", "bla-bla-bla");
-            ProjectsLB.Items.Add(prj.GetListBoxItem());
-            prj.IsStarred = true;
-            ProjectsLB.Items.Add(prj.GetListBoxItem());
+            AddNewProjectBtn.Click += AddNewProject;
+
+            RefreshListBox();
+        }
+
+        private void RefreshListBox()
+        {
+            ProjectsLB.Items.Clear();
+            foreach(ProjectLBI prj in previews)
+            {
+                ProjectsLB.Items.Add(prj);
+            }
+        }
+
+        private void AddNewProject(object sender, RoutedEventArgs e)
+        {
+            CreationDialog creationDialog = new CreationDialog();
+            creationDialog.ShowDialog();
+
+            RefreshListBox();
         }
     }
 }
