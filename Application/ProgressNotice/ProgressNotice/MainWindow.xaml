@@ -9,7 +9,7 @@
         Title="ProgressNotice - main page"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
-        Height="450" Width="800"
+        Height="600" Width="1100"
         Background="{StaticResource WindowBackgroundDefalutColor}">
     <Grid>
         <Grid.RowDefinitions>
@@ -17,5 +17,29 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <customcontrols:TopMenu x:Name="TopMenuTM"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="3"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.Resources>
+                    <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource ProjectLBI}"/>
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Your projects" FontSize="24" FontWeight="SemiBold"/>
+                <ListBox x:Name="ProjectsLB" Grid.Row="1" Background="Transparent" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+                <StackPanel Orientation="Horizontal" Grid.Row="2">
+                    <Button Content="Add"/>
+                    <Button Content="Remove selected"/>
+                </StackPanel>
+            </Grid>
+            <GridSplitter Grid.Column="1" ResizeDirection="Columns" Height="200" Width="3" ResizeBehavior="PreviousAndCurrent" Foreground="{StaticResource ForegroundDefault}"/>
+        </Grid>
     </Grid>
 </Window>

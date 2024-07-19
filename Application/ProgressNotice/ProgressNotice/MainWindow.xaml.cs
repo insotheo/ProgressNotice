@@ -1,4 +1,8 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
+using ProgressNotice.Data;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace ProgressNotice
 {
@@ -11,6 +15,11 @@ namespace ProgressNotice
         {
             InitializeComponent();
             TopMenuTM.Setup();
+
+            Project prj = new Project("Hello, World!", "bla-bla-bla");
+            ProjectsLB.Items.Add(prj.GetListBoxItem());
+            prj.IsStarred = true;
+            ProjectsLB.Items.Add(prj.GetListBoxItem());
         }
     }
 }
