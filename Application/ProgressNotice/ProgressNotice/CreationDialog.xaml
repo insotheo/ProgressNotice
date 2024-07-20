@@ -14,12 +14,29 @@
         BorderBrush="{StaticResource RadialWindowBackgroundDefColor}"
         BorderThickness="2"
         Background="{StaticResource WindowBackgroundDefalutColor}"
-        Height="450" Width="600">
+        Height="400" Width="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
         <customcontrols:TopMenu x:Name="TopMenuTM"/>
+        <Grid Grid.Row="1">
+            <StackPanel>
+                <TextBlock Text="Title" FontSize="28"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Rectangle Fill="{StaticResource RadialWindowBackgroundDefColor}"/>
+                    <TextBox x:Name="TitleTB" FontSize="28" Grid.Column="1"/>
+                </Grid>
+                <TextBlock Text="Description[MD]" FontSize="28"/>
+                <customcontrols:MDBox x:Name="DescriptionBox" Height="200"/>
+            </StackPanel>
+        </Grid>
+        <Button Grid.Row="2" HorizontalAlignment="Right" Content="Create" x:Name="CreateBtn"/>
     </Grid>
 </Window>

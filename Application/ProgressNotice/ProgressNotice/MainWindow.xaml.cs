@@ -11,10 +11,11 @@ namespace ProgressNotice
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+
     public partial class MainWindow : Window
     {
 
-        private List<ProjectLBI>? previews;
+        private List<ProjectLBI> previews;
 
         public MainWindow()
         {
@@ -26,14 +27,17 @@ namespace ProgressNotice
             {
                 using (FileStream fs = File.Create(_projectsListPath))
                 {
-                    using(StreamWriter sw = new StreamWriter(fs))
+                    using (StreamWriter sw = new StreamWriter(fs))
                     {
-                        sw.Write(JsonConvert.SerializeObject(new List<ProjectLBI>()));
+                        sw.Write(JsonConvert.SerializeObject(previews));
                     }
                 }
+                previews = new List<ProjectLBI>();
             }
-
-            previews = ProjectLBI.GetListOfProjects();
+            else
+            {
+                previews = JsonConvert.DeserializeObject<List<ProjectLBI>>(File.ReadAllText(_projectsListPath));
+            }
 
             InitializeComponent();
             TopMenuTM.Setup();
@@ -52,10 +56,24 @@ namespace ProgressNotice
             }
         }
 
+        private void SaveList()
+        {
+            File.WriteAllText(_projectsListPath, JsonConvert.SerializeObject(previews));
+        }
+
         private void AddNewProject(object sender, RoutedEventArgs e)
         {
-            CreationDialog creationDialog = new CreationDialog();
-            creationDialog.ShowDialog();
+            using (CreationDialog creationDialog = new CreationDialog())
+            {
+                creationDialog.ShowDialog();
+                if (creationDialog.IsCreated)
+                {
+                    Project newProject = new Project(creationDialog.CreationData);
+                    newProject.Create();
+                    previews.Add(newProject.GetListBoxItem());
+                    SaveList();
+                }
+            }
 
             RefreshListBox();
         }

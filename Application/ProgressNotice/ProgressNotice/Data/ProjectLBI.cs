@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System;
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 using static ProgressNotice.Data.GlobalProjectVars;
@@ -9,18 +8,27 @@ namespace ProgressNotice.Data
 {
     class ProjectLBI
     {
-        private bool isStarred;
-        private string token;
+        public bool isStarred {  get; set; }
+        public string token {  get; set; }
 
-        public string? ProjectTitle {  get; set; }
-        public string? LastChange { get; set; }
+        public string ProjectTitle {  get; set; }
+        public string LastChange { get; set; }
 
         public ProjectLBI(Project parent)
         {
             ProjectTitle = parent.IsStarred ? _starredChar + parent.Title : parent.Title;
-            LastChange = parent.LastChangeDate?.ToString("g");
+            LastChange = parent.LastChangeDate.ToString("g");
             token = parent.Token;
             isStarred = parent.IsStarred;
+        }
+
+        [JsonConstructor]
+        public ProjectLBI(bool isStarred, string token, string projectTitle, string lastChange)
+        {
+            this.isStarred = isStarred;
+            this.token = token;
+            ProjectTitle = projectTitle;
+            LastChange = lastChange;
         }
 
         public Project GetProject()
@@ -30,17 +38,8 @@ namespace ProgressNotice.Data
             {
                 throw new Exception($"Token({token}) doesn't exist!");
             }
-            return JsonConvert.DeserializeObject<Project>(File.ReadAllText(Path.Combine(path, _projectInfoFileName)));
-        }
-
-        public static List<ProjectLBI> GetListOfProjects()
-        {
-            return JsonConvert.DeserializeObject<List<ProjectLBI>>(File.ReadAllText(_projectsListPath));
-        }
-
-        public static void SaveListOfProjects(ref List<ProjectLBI> list)
-        {
-            File.WriteAllText(_projectsListPath, JsonConvert.SerializeObject(list));
+            Project project = JsonConvert.DeserializeObject<Project>(File.ReadAllText(Path.Combine(path, _projectInfoFileName)));
+            return project;
         }
 
     }

@@ -92,12 +92,12 @@ namespace ProgressNotice.CustomControls
 
         internal void SetButtonsVisibility(bool hide, bool resize, bool close)
         {
-            HideBtn.Visibility = hide ? Visibility.Visible : Visibility.Hidden;
-            ResizeBtn.Visibility = resize ? Visibility.Visible : Visibility.Hidden;
-            CloseBtn.Visibility = close ? Visibility.Visible : Visibility.Hidden;
+            HideBtn.Visibility = hide ? Visibility.Visible : Visibility.Collapsed;
+            ResizeBtn.Visibility = resize ? Visibility.Visible : Visibility.Collapsed;
+            CloseBtn.Visibility = close ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        private void ParentWindowStateChanged(object? sender, EventArgs e)
+        private void ParentWindowStateChanged(object sender, EventArgs e)
         {
             if (!windowStateChangedByControl)
             {

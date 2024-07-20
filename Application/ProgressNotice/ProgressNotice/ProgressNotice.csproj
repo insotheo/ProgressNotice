@@ -4,7 +4,6 @@
 	<Copyright>Insotheo(c)</Copyright>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows8.0</TargetFramework>
-	<Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
 	<OutDir>..\Bin\</OutDir>
 	<Optimize>true</Optimize>
@@ -14,6 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Markdig" Version="0.37.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
