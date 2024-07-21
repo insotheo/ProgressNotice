@@ -36,7 +36,7 @@
                 <ListBox x:Name="ProjectsLB" Grid.Row="1" Background="Transparent" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
                 <StackPanel Orientation="Horizontal" Grid.Row="2">
                     <Button Content="Add" x:Name="AddNewProjectBtn"/>
-                    <Button Content="Remove selected"/>
+                    <Button Content="Remove selected" x:Name="RemoveProjectBtn"/>
                 </StackPanel>
             </Grid>
             <GridSplitter Grid.Column="1" ResizeDirection="Columns" Height="200" Width="3" ResizeBehavior="PreviousAndCurrent" Foreground="{StaticResource ForegroundDefault}"/>

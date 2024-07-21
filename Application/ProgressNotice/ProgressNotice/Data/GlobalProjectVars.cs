@@ -8,5 +8,6 @@ namespace ProgressNotice.Data
         public static readonly string _projectsListPath = Path.Combine(_projectsPath, "prjs.list");
         public static readonly string _projectInfoFileName = "info.json";
         public static readonly string _starredChar = "✨ ";
+        public static readonly string _bannedTokenChar = "#";
     }
 }

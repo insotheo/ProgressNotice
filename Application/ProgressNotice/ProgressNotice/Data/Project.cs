@@ -33,7 +33,7 @@ namespace ProgressNotice.Data
             Title = title;
             DescriptionMD = description;
             CreationDate = LastChangeDate = DateTime.Now;
-            Token = $"${{{DateTime.Now.Day}{DateTime.Now.Month}{DateTime.Now.Year}_{Title.Replace(" ", "#").ToUpper()}_{DateTime.Now.Hour}{DateTime.Now.Minute}{DateTime.Now.Second}{DateTime.Now.Millisecond}}}";
+            Token = createToken();
         }
 
         internal Project(ProjectCreationData creationData)
@@ -41,7 +41,7 @@ namespace ProgressNotice.Data
             Title = creationData.Title;
             DescriptionMD = creationData.Description;
             CreationDate = LastChangeDate = DateTime.Now;
-            Token = $"${{{DateTime.Now.Day}{DateTime.Now.Month}{DateTime.Now.Year}_{Title.Replace(" ", "#").ToUpper()}_{DateTime.Now.Hour}{DateTime.Now.Minute}{DateTime.Now.Second}{DateTime.Now.Millisecond}}}";
+            Token = createToken();
         }
 
         internal ProjectLBI GetListBoxItem()
@@ -57,9 +57,27 @@ namespace ProgressNotice.Data
             {
                 using(StreamWriter writer = new StreamWriter(info))
                 {
-                    writer.Write(JsonConvert.SerializeObject(this));
+                    writer.Write(JsonConvert.SerializeObject(this, Formatting.Indented));
                 }
             }
+        }
+
+        internal void Remove()
+        {
+            string path = Path.Combine(_projectsPath, Token);
+            Directory.Delete(path, true);
+        }
+
+        private string createToken()
+        {
+            string tmp = Title.Trim();
+
+            foreach(char banned in Path.GetInvalidFileNameChars())
+            {
+                tmp = tmp.Replace(banned, _bannedTokenChar[0]);
+            }
+
+            return $"${{{DateTime.Now.Day}{DateTime.Now.Month}{DateTime.Now.Year}_{tmp.Replace(" ", _bannedTokenChar).ToUpper()}_{DateTime.Now.Hour}{DateTime.Now.Minute}{DateTime.Now.Second}{DateTime.Now.Millisecond}}}";
         }
 
     }
