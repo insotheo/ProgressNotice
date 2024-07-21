@@ -52,24 +52,31 @@ namespace ProgressNotice.CustomControls
             var doc = CodeBox.Document;
             doc.PageWidth = 5000;
 
-            foreach(Block block in doc.Blocks)
+            foreach (Block block in doc.Blocks)
             {
-                if(block is Paragraph paragraph)
+                if (block is Paragraph paragraph)
                 {
                     paragraph.LineHeight = 0.01f;
                 }
             }
 
             int linesCounter = 1;
-            TextPointer pointer = doc.ContentStart;
-            while(pointer != null && pointer.CompareTo(doc.ContentEnd) < 0)
+
+            //TextPointer pointer = doc.ContentStart;
+            //while(pointer != null && pointer.CompareTo(doc.ContentEnd) < 0)
+            //{
+            //    if(pointer.GetTextInRun(LogicalDirection.Forward).Length > 0)
+            //    {
+            //        NumList.Items.Add(linesCounter++);
+            //    }
+            //    pointer = pointer.GetNextContextPosition(LogicalDirection.Forward);
+            //}
+
+            for (int i = 0; i < GetContent().Split("\n").Length - 1; i++)
             {
-                if(pointer.GetTextInRun(LogicalDirection.Forward).Length > 0)
-                {
-                    NumList.Items.Add(linesCounter++);
-                }
-                pointer = pointer.GetNextContextPosition(LogicalDirection.Forward);
+                NumList.Items.Add(linesCounter++);
             }
+
         }
 
         private void CodeBoxTextChanged(object sender, TextChangedEventArgs e)
