@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System.Windows.Controls;
 
 using static ProgressNotice.Data.GlobalProjectVars;
+using System.Linq;
 
 namespace ProgressNotice
 {
@@ -53,7 +54,8 @@ namespace ProgressNotice
         internal void RefreshListBox()
         {
             ProjectsLB.Items.Clear();
-            foreach(ProjectLBI prj in previews)
+            previews = previews.OrderByDescending(u => u.isStarred).ToList();
+            foreach (ProjectLBI prj in previews)
             {
                 ProjectsLB.Items.Add(prj);
             }
@@ -86,7 +88,7 @@ namespace ProgressNotice
             if (ProjectsLB.SelectedItem != null)
             {
                 ProjectLBI selected = ProjectsLB.SelectedItem as ProjectLBI;
-                if (MessageBox.Show($"Are you sure you want to remove \"{selected.ProjectTitle}\"?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                if (MessageBox.Show($"Are you sure you want to remove \"{selected.ProjectTitle.Replace(_starredChar, "")}\"?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     previews.Remove(selected);
                     selected.GetProject().Remove();

@@ -10,24 +10,24 @@ namespace ProgressNotice.Data
     {
         public bool isStarred {  get; set; }
         public string token {  get; set; }
-
-        public string ProjectTitle {  get; set; }
+        public string originalTitle { get; set; }
+        public string ProjectTitle { get { return isStarred ? _starredChar + originalTitle : originalTitle; } }
         public string LastChange { get; set; }
 
         public ProjectLBI(Project parent)
         {
-            ProjectTitle = parent.IsStarred ? _starredChar + parent.Title : parent.Title;
+            originalTitle = parent.Title;
             LastChange = parent.LastChangeDate.ToString("g");
             token = parent.Token;
             isStarred = parent.IsStarred;
         }
 
         [JsonConstructor]
-        public ProjectLBI(bool isStarred, string token, string projectTitle, string lastChange)
+        public ProjectLBI(bool isStarred, string token, string originalTitle, string lastChange)
         {
             this.isStarred = isStarred;
             this.token = token;
-            ProjectTitle = projectTitle;
+            this.originalTitle = originalTitle;
             LastChange = lastChange;
         }
 

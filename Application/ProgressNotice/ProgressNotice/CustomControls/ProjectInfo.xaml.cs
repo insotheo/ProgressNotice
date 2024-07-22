@@ -39,9 +39,8 @@ namespace ProgressNotice.CustomControls
             if(Window.GetWindow(this) is MainWindow)
             {
                 MainWindow parent = Window.GetWindow(this) as MainWindow;
-                ProjectLBI prjLBI = prj.GetListBoxItem();
-                parent.previews.RemoveAt(parent.GetSelectedItemIndex());
-                parent.previews.Add(prjLBI);
+                parent.previews[parent.GetSelectedItemIndex()].isStarred = prj.IsStarred;
+                ProjectLBI prjLBI = parent.previews[parent.GetSelectedItemIndex()];
                 parent.SaveList();
                 prj.Save();
                 parent.RefreshListBox();
@@ -60,7 +59,7 @@ namespace ProgressNotice.CustomControls
                     prj.Title = titleEditor.NewTitle;
                     MainWindow parent = Window.GetWindow(this) as MainWindow;
                     int i = parent.GetSelectedItemIndex();
-                    parent.previews[i].ProjectTitle = prj.Title;
+                    parent.previews[i].originalTitle = prj.Title;
                     parent.SaveList();
                     prj.Save();
                     parent.RefreshListBox();
