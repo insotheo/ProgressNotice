@@ -26,6 +26,13 @@ namespace ProgressNotice.CustomControls
             return range.Text;
         }
 
+        public void SetContent(string content)
+        {
+            CodeBox.Document.Blocks.Clear();
+            Paragraph paragraph = new Paragraph(new Run(content));
+            CodeBox.Document.Blocks.Add(paragraph);
+        }
+
         public double GetFontSize()
         {
             return CodeBox.FontSize;

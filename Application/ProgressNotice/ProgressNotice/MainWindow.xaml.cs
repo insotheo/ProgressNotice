@@ -16,7 +16,7 @@ namespace ProgressNotice
     public partial class MainWindow : Window
     {
 
-        private List<ProjectLBI> previews;
+        internal List<ProjectLBI> previews;
 
         public MainWindow()
         {
@@ -50,7 +50,7 @@ namespace ProgressNotice
             RefreshListBox();
         }
 
-        private void RefreshListBox()
+        internal void RefreshListBox()
         {
             ProjectsLB.Items.Clear();
             foreach(ProjectLBI prj in previews)
@@ -59,10 +59,15 @@ namespace ProgressNotice
             }
         }
 
-        private void SaveList()
+        internal void SaveList()
         {
             File.WriteAllText(_projectsListPath, JsonConvert.SerializeObject(previews));
         }
+
+
+        internal int GetSelectedItemIndex() => ProjectsLB.SelectedIndex;
+
+        internal void SetSelectedItemIndex(int index) => ProjectsLB.SelectedIndex = index; 
 
         private void OnProjectSelected(object sender, SelectionChangedEventArgs e)
         {

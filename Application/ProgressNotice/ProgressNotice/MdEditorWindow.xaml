@@ -1,28 +1,28 @@
-﻿<Window
+﻿<Window x:Class="ProgressNotice.MdEditorWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProgressNotice"
         xmlns:customcontrols="clr-namespace:ProgressNotice.CustomControls"
-        x:Class="ProgressNotice.MDPreviewDialog"
         mc:Ignorable="d"
-        Title="ProgressNotice - MD preview"
-        WindowStartupLocation="CenterOwner"
-        ResizeMode="NoResize"
-        WindowStyle="None"
+        Title="ProgressNotice - editing md"
+        Height="500" 
+        Width="700"
         ShowInTaskbar="False"
-        Topmost="True"
         BorderBrush="{StaticResource RadialWindowBackgroundDefColor}"
         BorderThickness="2"
         Background="{StaticResource WindowBackgroundDefalutColor}"
-        MinHeight="500" MinWidth="500">
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
         <customcontrols:TopMenu x:Name="TopMenuTM"/>
-        <customcontrols:MdViewer x:Name="mdView" Grid.Row="1"/>
+        <customcontrols:MDBox Grid.Row="1" x:Name="mdBox"/>
+        <Button Name="SaveAndApplyBtn" Grid.Row="2" Content="Save &amp; Apply" HorizontalAlignment="Right"/>
     </Grid>
 </Window>

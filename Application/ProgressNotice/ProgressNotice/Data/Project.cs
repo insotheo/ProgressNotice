@@ -68,6 +68,12 @@ namespace ProgressNotice.Data
             Directory.Delete(path, true);
         }
 
+        internal void Save()
+        {
+            string path = Path.Combine(_projectsPath, Token, _projectInfoFileName);
+            File.WriteAllText(path, JsonConvert.SerializeObject(this, Formatting.Indented));
+        }
+
         private string createToken()
         {
             string tmp = Title.Trim();
