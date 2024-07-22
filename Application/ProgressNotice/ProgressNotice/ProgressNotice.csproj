@@ -19,6 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="CustomControls\ViewerScript.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="CustomControls\ViewerStyle.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

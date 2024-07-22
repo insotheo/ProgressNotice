@@ -1,6 +1,8 @@
 ﻿using System.Windows.Controls;
 using System.IO;
 
+using static ProgressNotice.Data.GlobalProjectVars;
+
 namespace ProgressNotice.CustomControls
 {
     /// <summary>
@@ -16,8 +18,13 @@ namespace ProgressNotice.CustomControls
 
         public void Load(string htmlSource)
         {
-            string src = $"<style>\n{File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "CustomControls", "ViewerStyle.css"))}\n</style>\n<body>\n" +
-                            $"{htmlSource}\n</body>";
+            string src = $"<style>\n{File.ReadAllText(_cssPath)}\n</style>\n" +
+                $"<body>\n" +
+                $"{htmlSource}\n" +
+                $"<script>\n" +
+                $"{File.ReadAllText(_jsPath)}\n" +
+                $"</script>" +
+                $"</body>\n";
 
             LoadHtml(src);
         }

@@ -85,8 +85,22 @@
         </Setter>
     </Style>
 
-    
+    <Style TargetType="{x:Type MenuItem}">
+        <Setter Property="Background" Value="{StaticResource ButtonDefaultBackgroundColor}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource RadialButtonDefColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundDefault}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Margin" Value="3"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
+    </Style>
 
+    <Style TargetType="{x:Type Menu}">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+    
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource DefaultButtonStyle}"/>
 
 </ResourceDictionary>

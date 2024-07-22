@@ -3,6 +3,7 @@ using System.Windows;
 using ProgressNotice.Data;
 using System.IO;
 using Newtonsoft.Json;
+using System.Windows.Controls;
 
 using static ProgressNotice.Data.GlobalProjectVars;
 
@@ -44,6 +45,7 @@ namespace ProgressNotice
 
             AddNewProjectBtn.Click += AddNewProject;
             RemoveProjectBtn.Click += RemoveProject;
+            ProjectsLB.SelectionChanged += OnProjectSelected;
 
             RefreshListBox();
         }
@@ -60,6 +62,18 @@ namespace ProgressNotice
         private void SaveList()
         {
             File.WriteAllText(_projectsListPath, JsonConvert.SerializeObject(previews));
+        }
+
+        private void OnProjectSelected(object sender, SelectionChangedEventArgs e)
+        {
+            if(ProjectsLB.Items.Count <= 0 && ProjectsLB.SelectedItem == null)
+            {
+                PrjInfoMenu.SetVisibilty(false);
+                return;
+            }
+            Project selected = (ProjectsLB.SelectedItem as ProjectLBI).GetProject();
+            PrjInfoMenu.LoadInfo(ref selected);
+            PrjInfoMenu.SetVisibilty(true);
         }
 
         private void RemoveProject(object sender, RoutedEventArgs e)

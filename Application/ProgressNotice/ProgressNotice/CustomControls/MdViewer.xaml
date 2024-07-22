@@ -8,6 +8,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Wpf:WebView2 Name="mdView" IsEnabled="False"/>
+        <Wpf:WebView2 Name="mdView" IsEnabled="False" VirtualizingPanel.IsVirtualizing="True"/>
     </Grid>
 </UserControl>
