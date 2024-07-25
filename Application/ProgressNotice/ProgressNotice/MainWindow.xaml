@@ -10,6 +10,7 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Height="600" Width="1100"
+        MinHeight="400" MinWidth="510"
         Background="{StaticResource WindowBackgroundDefalutColor}">
     <Grid>
         <Grid.RowDefinitions>
