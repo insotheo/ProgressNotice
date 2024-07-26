@@ -6,7 +6,7 @@ using static ProgressNotice.Data.GlobalProjectVars;
 
 namespace ProgressNotice.Data
 {
-    class ProjectLBI
+    public class ProjectLBI
     {
         public bool isStarred {  get; set; }
         public string token {  get; set; }

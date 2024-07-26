@@ -43,12 +43,18 @@ namespace ProgressNotice.CustomControls
                 if (logCreation.IsCreated)
                 {
                     prj.LastChangeDate = DateTime.Now;
+
                     Logs tmp = prj.GetLogs();
                     tmp.LogsList.Add(logCreation.NewLog);
+
                     tmp.Save();
                     prj.Save();
                     Task.Delay(10).Wait();
                     RefreshTree();
+                    int index = (Window.GetWindow(this) as MainWindow).GetSelectedItemIndex();
+                    (Window.GetWindow(this) as MainWindow).previews[index].LastChange = prj.LastChangeDate.ToString("g");
+                    (Window.GetWindow(this) as MainWindow).RefreshListBox();
+                    (Window.GetWindow(this) as MainWindow).SetSelectedItemIndex(index);
                 }
             }
         }
@@ -109,11 +115,13 @@ namespace ProgressNotice.CustomControls
                 case 0:
                     AboutMenu.Visibility = Visibility.Visible;
                     ChangeLogMenu.Visibility = Visibility.Collapsed;
+                    LogsTree.Items.Clear();
                     break;
 
                 case 1:
                     AboutMenu.Visibility = Visibility.Collapsed;
                     ChangeLogMenu.Visibility = Visibility.Visible;
+                    RefreshTree();
                     break;
             }
         }

@@ -4,9 +4,9 @@ using ProgressNotice.Data;
 using System.IO;
 using Newtonsoft.Json;
 using System.Windows.Controls;
+using System.Linq;
 
 using static ProgressNotice.Data.GlobalProjectVars;
-using System.Linq;
 
 namespace ProgressNotice
 {
@@ -47,8 +47,24 @@ namespace ProgressNotice
             AddNewProjectBtn.Click += AddNewProject;
             RemoveProjectBtn.Click += RemoveProject;
             ProjectsLB.SelectionChanged += OnProjectSelected;
+            SearchBtn.Click += Search;
 
             RefreshListBox();
+        }
+
+        private void Search(object sender, RoutedEventArgs e)
+        {
+            using(SearchWindow searchWindow = new SearchWindow(ref previews))
+            {
+                searchWindow.ShowDialog();
+                previews = searchWindow.list;
+                RefreshListBox();
+                SaveList();
+                if (searchWindow.SelectedProject != null)
+                {
+                    SetSelectedItemIndex(previews.IndexOf(searchWindow.SelectedProject));
+                }
+            }
         }
 
         internal void RefreshListBox()

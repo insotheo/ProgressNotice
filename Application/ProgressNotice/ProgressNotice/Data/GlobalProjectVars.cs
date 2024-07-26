@@ -12,5 +12,6 @@ namespace ProgressNotice.Data
         public static readonly string _bannedTokenChar = "#";
         public static readonly string _cssPath = Path.Combine(Directory.GetCurrentDirectory(), "CustomControls", "ViewerStyle.css");
         public static readonly string _jsPath = Path.Combine(Directory.GetCurrentDirectory(), "CustomControls", "ViewerScript.js");
+        public static readonly string _starFilter = "&star;";
     }
 }

@@ -51,6 +51,7 @@
         <Setter Property="Background" Value="{StaticResource ButtonDefaultBackgroundColor}"/>
         <Setter Property="BorderBrush" Value="{StaticResource RadialButtonDefColor}"/>
         <Setter Property="Foreground" Value="{StaticResource ForegroundDefault}"/>
+        <Setter Property="Opacity" Value="1"/>
         <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="Margin" Value="3"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
@@ -62,6 +63,7 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Margin="{TemplateBinding Margin}"
+                            Opacity="{TemplateBinding Opacity}"
                             CornerRadius="3">
                         <TextBlock Text="{TemplateBinding Content}"
                                    FontSize="{TemplateBinding FontSize}"
@@ -78,6 +80,9 @@
                             <Setter Property="Background" Value="{StaticResource RadialButtonDefColor}"/>
                             <Setter Property="BorderBrush" Value="{StaticResource ButtonDefaultBackgroundColor}"/>
                             <Setter Property="Foreground" Value="{StaticResource RadialForegroundDefault}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.5"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

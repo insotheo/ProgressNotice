@@ -29,15 +29,16 @@
                     <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource ProjectLBI}"/>
                 </Grid.Resources>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="45"/>
                     <RowDefinition/>
                     <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="Your projects" FontSize="24" FontWeight="SemiBold"/>
-                <ListBox x:Name="ProjectsLB" Grid.Row="1" Background="Transparent" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+                <TextBlock Text="Your projects" VerticalAlignment="Center" FontSize="26" FontWeight="SemiBold"/>
+                <Button Content="Search" HorizontalAlignment="Right" Name="SearchBtn"/>
+                <ListBox Name="ProjectsLB" Grid.Row="1" Background="Transparent" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
                 <StackPanel Orientation="Horizontal" Grid.Row="2">
-                    <Button Content="Add" x:Name="AddNewProjectBtn"/>
-                    <Button Content="Remove selected" x:Name="RemoveProjectBtn"/>
+                    <Button Content="Add" Name="AddNewProjectBtn"/>
+                    <Button Content="Remove selected" Name="RemoveProjectBtn"/>
                 </StackPanel>
             </Grid>
             <GridSplitter Grid.Column="1" ResizeDirection="Columns" Height="200" Width="3" ResizeBehavior="PreviousAndCurrent" Foreground="{StaticResource ForegroundDefault}"/>

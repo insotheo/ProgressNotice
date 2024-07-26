@@ -7,7 +7,7 @@ using static ProgressNotice.Data.GlobalProjectVars;
 
 namespace ProgressNotice.Data
 {
-    internal class Project
+    public class Project
     {
         public bool IsStarred;
 
