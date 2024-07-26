@@ -102,7 +102,7 @@
                     
                     <MenuItem Header="..." Name="AboutMenu">
                         <MenuItem Header="Edit" Name="EditAboutBtn"/>
-                        <MenuItem Header="Save as file"/>
+                        <MenuItem Header="Save as file" Name="SaveDescriptionAsFileBtn"/>
                     </MenuItem>
 
                     <MenuItem Header="..." Name="ChangeLogMenu" Visibility="Collapsed">

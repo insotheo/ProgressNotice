@@ -6,8 +6,10 @@ using System;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using System.Linq;
+using Microsoft.Win32;
 
 using static ProgressNotice.Data.GlobalProjectVars;
+using System.IO;
 
 namespace ProgressNotice.CustomControls
 {
@@ -30,9 +32,15 @@ namespace ProgressNotice.CustomControls
             EditTitleBtn.Click += EditTitle;
             StarProjectBtn.Click += StarProject;
             AddNewLogBtn.Click += AddNewLog;
+            SaveDescriptionAsFileBtn.Click += SaveDescriptionAsFile;
 
             TitleBorder.MouseEnter += (object sender, MouseEventArgs e) => { TitleButtonsBorder.Visibility = Visibility.Visible; };
             TitleBorder.MouseLeave += (object sender, MouseEventArgs e) => { TitleButtonsBorder.Visibility = Visibility.Collapsed; };
+        }
+
+        private void SaveDescriptionAsFile(object sender, RoutedEventArgs e)
+        {
+            MDSaver.Save(prj.DescriptionMD);
         }
 
         private void AddNewLog(object sender, RoutedEventArgs e)

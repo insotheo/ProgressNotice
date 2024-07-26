@@ -22,22 +22,6 @@ namespace ProgressNotice.Data
             LogsList.Add(log);
         }
 
-        internal void RemoveLog(Log log)
-        {
-            if(LogsList.Contains(log))
-            {
-                LogsList.Remove(log);
-            }
-        }
-
-        internal void RemoveLog(int index)
-        {
-            if(LogsList.Count - 1 > index && index >= 0)
-            {
-                LogsList.RemoveAt(index);
-            }
-        }
-
         internal void Save()
         {
             File.WriteAllText(Path.Combine(_projectsPath, ParentToken, _projectLogsFileName), JsonConvert.SerializeObject(this, Formatting.Indented));
