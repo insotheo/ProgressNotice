@@ -31,6 +31,7 @@ namespace ProgressNotice.CustomControls
             CodeBox.Document.Blocks.Clear();
             Paragraph paragraph = new Paragraph(new Run(content));
             CodeBox.Document.Blocks.Add(paragraph);
+            UpdateNumberLines();
         }
 
         public double GetFontSize()

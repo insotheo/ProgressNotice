@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 using static ProgressNotice.Data.GlobalProjectVars;
 
@@ -60,6 +61,13 @@ namespace ProgressNotice.Data
                     writer.Write(JsonConvert.SerializeObject(this, Formatting.Indented));
                 }
             }
+            using(FileStream logs = File.Create(Path.Combine(_projectsPath, Token, _projectLogsFileName)))
+            {
+                using(StreamWriter writer = new StreamWriter(logs))
+                {
+                    writer.Write(JsonConvert.SerializeObject(new Logs(new List<Log>(), Token), Formatting.Indented));
+                }
+            }
         }
 
         internal void Remove()
@@ -72,6 +80,23 @@ namespace ProgressNotice.Data
         {
             string path = Path.Combine(_projectsPath, Token, _projectInfoFileName);
             File.WriteAllText(path, JsonConvert.SerializeObject(this, Formatting.Indented));
+        }
+
+        internal Logs GetLogs()
+        {
+            Logs logs = JsonConvert.DeserializeObject<Logs>(File.ReadAllText(Path.Combine(_projectsPath, Token, _projectLogsFileName)));
+            return logs == null ? new Logs(new List<Log>(), Token) : logs;
+        }
+
+        internal static Project GetProjectByToken(string token)
+        {
+            string path = Path.Combine(_projectsPath, token);
+            if (!Directory.Exists(path))
+            {
+                throw new Exception($"Token({token}) doesn't exist!");
+            }
+            Project project = JsonConvert.DeserializeObject<Project>(File.ReadAllText(Path.Combine(path, _projectInfoFileName)));
+            return project;
         }
 
         private string createToken()

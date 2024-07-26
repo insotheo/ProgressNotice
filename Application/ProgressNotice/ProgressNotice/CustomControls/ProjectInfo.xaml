@@ -106,8 +106,7 @@
                     </MenuItem>
 
                     <MenuItem Header="..." Name="ChangeLogMenu" Visibility="Collapsed">
-                        <MenuItem Header="Add new"/>
-                        <MenuItem Header="Edit selected"/>
+                        <MenuItem Header="Add new" Name="AddNewLogBtn"/>
                     </MenuItem>
                     
                 </Menu>
@@ -127,9 +126,13 @@
                             <local:MdViewer x:Name="mdViewer"/>
                         </Border>
                     </TabItem>
-                    
+
                     <TabItem Header="Change log" Style="{StaticResource TextTab}">
-                        
+                        <TreeView Background="Transparent"
+                                  VirtualizingPanel.IsVirtualizing="True" Name="LogsTree"
+                                  HorizontalAlignment="Stretch">
+
+                        </TreeView>
                     </TabItem>
                 </TabControl>
             </Grid>

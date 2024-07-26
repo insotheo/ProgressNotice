@@ -4,6 +4,8 @@ using System.Windows;
 using Markdig;
 using System;
 using System.Windows.Input;
+using System.Threading.Tasks;
+using System.Linq;
 
 using static ProgressNotice.Data.GlobalProjectVars;
 
@@ -27,9 +29,28 @@ namespace ProgressNotice.CustomControls
             EditAboutBtn.Click += EditAbout;
             EditTitleBtn.Click += EditTitle;
             StarProjectBtn.Click += StarProject;
+            AddNewLogBtn.Click += AddNewLog;
 
             TitleBorder.MouseEnter += (object sender, MouseEventArgs e) => { TitleButtonsBorder.Visibility = Visibility.Visible; };
             TitleBorder.MouseLeave += (object sender, MouseEventArgs e) => { TitleButtonsBorder.Visibility = Visibility.Collapsed; };
+        }
+
+        private void AddNewLog(object sender, RoutedEventArgs e)
+        {
+            using (LogCreationWindow logCreation = new LogCreationWindow())
+            {
+                logCreation.ShowDialog();
+                if (logCreation.IsCreated)
+                {
+                    prj.LastChangeDate = DateTime.Now;
+                    Logs tmp = prj.GetLogs();
+                    tmp.LogsList.Add(logCreation.NewLog);
+                    tmp.Save();
+                    prj.Save();
+                    Task.Delay(10).Wait();
+                    RefreshTree();
+                }
+            }
         }
 
         private void StarProject(object sender, RoutedEventArgs e)
@@ -115,6 +136,28 @@ namespace ProgressNotice.CustomControls
             LastChangeTB.Text = $"Last change on {project.LastChangeDate.ToString("g")}({Math.Round((DateTime.Now - project.LastChangeDate).TotalDays), 2} days ago)";
             mdViewer.Load(Markdown.ToHtml(project.DescriptionMD, new MarkdownPipelineBuilder().Build()));
             StarProjectBtn.Content = project.IsStarred ? "Make unstarred" : "Make starred";
+
+            //Logs loading
+            RefreshTree();
+        }
+        
+        internal void RefreshTree()
+        {
+            LogsTree.Items.Clear();
+            Logs logs = prj.GetLogs();
+            if(logs.LogsList.Count == 0)
+            {
+                return;
+            }
+            foreach (Log log in logs.LogsList.OrderByDescending(x => x.LogDateTime))
+            {
+                TreeViewItem treeViewItem = new TreeViewItem();
+                treeViewItem.Header = $"{log.LogName}({log.LogDateTime.ToString("g")})";
+                LogView control = new LogView(log, prj.Token, logs.LogsList.IndexOf(log));
+                control.HorizontalAlignment = HorizontalAlignment.Stretch;
+                treeViewItem.Items.Add(control);
+                LogsTree.Items.Add(treeViewItem);
+            }
         }
 
     }
