@@ -1,5 +1,5 @@
-﻿using System.Windows;
-using Markdig;
+﻿using Markdig;
+using System.Windows;
 
 namespace ProgressNotice
 {

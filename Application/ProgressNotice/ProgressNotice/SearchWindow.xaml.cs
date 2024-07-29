@@ -1,10 +1,9 @@
 ﻿using ProgressNotice.Data;
 using System;
-using System.Windows;
 using System.Collections.Generic;
-using System.Windows.Controls;
 using System.Linq;
-
+using System.Windows;
+using System.Windows.Controls;
 using static ProgressNotice.Data.GlobalProjectVars;
 
 namespace ProgressNotice
@@ -49,7 +48,7 @@ namespace ProgressNotice
 
         private void Reversing(object sender, RoutedEventArgs e)
         {
-            if(list.Count > 0)
+            if (list.Count > 0)
             {
                 if ((bool)ReverseCB.IsChecked == true)
                 {
@@ -108,12 +107,13 @@ namespace ProgressNotice
             string[] keyWords = SearchBox.Text.Replace(_starFilter, "").ToLower().Trim().Replace(" ", "").Split("||");
             foreach (ProjectLBI project in list)
             {
-                if(project.isStarred && haveStar)
+                if (project.isStarred && haveStar)
                 {
                     ListOfProjects.Items.Add(project);
                     continue;
                 }
-                for(int i = 0; i < keyWords.Length; i++) {
+                for (int i = 0; i < keyWords.Length; i++)
+                {
                     if (project.ProjectTitle.ToLower().Replace(" ", "").Contains(keyWords[i]))
                     {
                         if (ListOfProjects.Items.Contains(project))

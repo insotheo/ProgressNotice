@@ -1,8 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.IO;
 using System.Collections.Generic;
-
+using System.IO;
 using static ProgressNotice.Data.GlobalProjectVars;
 
 namespace ProgressNotice.Data
@@ -54,16 +53,16 @@ namespace ProgressNotice.Data
         {
             string path = Path.Combine(_projectsPath, Token);
             Directory.CreateDirectory(path);
-            using(FileStream info = File.Create(Path.Combine(path, _projectInfoFileName)))
+            using (FileStream info = File.Create(Path.Combine(path, _projectInfoFileName)))
             {
-                using(StreamWriter writer = new StreamWriter(info))
+                using (StreamWriter writer = new StreamWriter(info))
                 {
                     writer.Write(JsonConvert.SerializeObject(this, Formatting.Indented));
                 }
             }
-            using(FileStream logs = File.Create(Path.Combine(_projectsPath, Token, _projectLogsFileName)))
+            using (FileStream logs = File.Create(Path.Combine(_projectsPath, Token, _projectLogsFileName)))
             {
-                using(StreamWriter writer = new StreamWriter(logs))
+                using (StreamWriter writer = new StreamWriter(logs))
                 {
                     writer.Write(JsonConvert.SerializeObject(new Logs(new List<Log>(), Token), Formatting.Indented));
                 }
@@ -103,7 +102,7 @@ namespace ProgressNotice.Data
         {
             string tmp = Title.Trim();
 
-            foreach(char banned in Path.GetInvalidFileNameChars())
+            foreach (char banned in Path.GetInvalidFileNameChars())
             {
                 tmp = tmp.Replace(banned, _bannedTokenChar[0]);
             }

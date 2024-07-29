@@ -1,10 +1,8 @@
-﻿using System.Windows.Controls;
+﻿using Markdig;
 using ProgressNotice.Data;
-using Markdig;
-using System.Windows;
 using System.Linq;
-
-using static ProgressNotice.Data.GlobalProjectVars;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace ProgressNotice.CustomControls
 {

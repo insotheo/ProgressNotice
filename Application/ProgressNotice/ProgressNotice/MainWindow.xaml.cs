@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Windows;
+﻿using Newtonsoft.Json;
 using ProgressNotice.Data;
+using System.Collections.Generic;
 using System.IO;
-using Newtonsoft.Json;
-using System.Windows.Controls;
 using System.Linq;
-
+using System.Windows;
+using System.Windows.Controls;
 using static ProgressNotice.Data.GlobalProjectVars;
 
 namespace ProgressNotice
@@ -49,13 +48,13 @@ namespace ProgressNotice
             RemoveProjectBtn.Click += RemoveProject;
             ProjectsLB.SelectionChanged += OnProjectSelected;
             SearchBtn.Click += Search;
-            
+
             RefreshListBox();
         }
 
         private void Search(object sender, RoutedEventArgs e)
         {
-            using(SearchWindow searchWindow = new SearchWindow(ref previews))
+            using (SearchWindow searchWindow = new SearchWindow(ref previews))
             {
                 searchWindow.ShowDialog();
                 previews = searchWindow.list;
@@ -86,11 +85,11 @@ namespace ProgressNotice
 
         internal int GetSelectedItemIndex() => ProjectsLB.SelectedIndex;
 
-        internal void SetSelectedItemIndex(int index) => ProjectsLB.SelectedIndex = index; 
+        internal void SetSelectedItemIndex(int index) => ProjectsLB.SelectedIndex = index;
 
         private void OnProjectSelected(object sender, SelectionChangedEventArgs e)
         {
-            if(ProjectsLB.Items.Count <= 0 && ProjectsLB.SelectedItem == null)
+            if (ProjectsLB.Items.Count <= 0 && ProjectsLB.SelectedItem == null)
             {
                 PrjInfoMenu.SetVisibilty(false);
                 return;

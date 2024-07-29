@@ -1,6 +1,5 @@
-﻿using System.Windows.Controls;
-using System.IO;
-
+﻿using System.IO;
+using System.Windows.Controls;
 using static ProgressNotice.Data.GlobalProjectVars;
 
 namespace ProgressNotice.CustomControls

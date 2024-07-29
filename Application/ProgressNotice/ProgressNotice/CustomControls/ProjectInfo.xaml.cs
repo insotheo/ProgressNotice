@@ -1,13 +1,11 @@
-﻿using ProgressNotice.Data;
-using System.Windows.Controls;
-using System.Windows;
-using Markdig;
+﻿using Markdig;
+using ProgressNotice.Data;
 using System;
-using System.Windows.Input;
-using System.Threading.Tasks;
 using System.Linq;
-
-using static ProgressNotice.Data.GlobalProjectVars;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace ProgressNotice.CustomControls
 {
@@ -75,7 +73,7 @@ namespace ProgressNotice.CustomControls
         {
             prj.IsStarred = !prj.IsStarred;
             StarProjectBtn.Content = prj.IsStarred ? "Make unstarred" : "Make starred";
-            if(Window.GetWindow(this) is MainWindow)
+            if (Window.GetWindow(this) is MainWindow)
             {
                 MainWindow parent = Window.GetWindow(this) as MainWindow;
                 parent.previews[parent.GetSelectedItemIndex()].isStarred = prj.IsStarred;
@@ -93,7 +91,7 @@ namespace ProgressNotice.CustomControls
             titleEditor.ShowDialog();
             if (titleEditor.IsSaved)
             {
-                if(Window.GetWindow(this) is MainWindow)
+                if (Window.GetWindow(this) is MainWindow)
                 {
                     prj.Title = titleEditor.NewTitle;
                     MainWindow parent = Window.GetWindow(this) as MainWindow;
@@ -140,7 +138,7 @@ namespace ProgressNotice.CustomControls
 
         internal void SetVisibilty(bool isVisible)
         {
-            if(isVisible)
+            if (isVisible)
             {
                 this.Visibility = Visibility.Visible;
                 return;
@@ -153,19 +151,19 @@ namespace ProgressNotice.CustomControls
             prj = project;
             TitleTB.Text = project.Title;
             SinceTB.Text = $"Since {project.CreationDate.ToString("g")}";
-            LastChangeTB.Text = $"Last change on {project.LastChangeDate.ToString("g")}({Math.Round((DateTime.Now - project.LastChangeDate).TotalDays), 2} days ago)";
+            LastChangeTB.Text = $"Last change on {project.LastChangeDate.ToString("g")}({Math.Round((DateTime.Now - project.LastChangeDate).TotalDays),2} days ago)";
             mdViewer.Load(Markdown.ToHtml(project.DescriptionMD, new MarkdownPipelineBuilder().Build()));
             StarProjectBtn.Content = project.IsStarred ? "Make unstarred" : "Make starred";
 
             //Logs loading
             RefreshTree();
         }
-        
+
         internal void RefreshTree()
         {
             LogsTree.Items.Clear();
             Logs logs = prj.GetLogs();
-            if(logs.LogsList.Count == 0)
+            if (logs.LogsList.Count == 0)
             {
                 return;
             }

@@ -1,15 +1,14 @@
-﻿using System.IO;
+﻿using Newtonsoft.Json;
 using System;
-using Newtonsoft.Json;
-
+using System.IO;
 using static ProgressNotice.Data.GlobalProjectVars;
 
 namespace ProgressNotice.Data
 {
     public class ProjectLBI
     {
-        public bool isStarred {  get; set; }
-        public string token {  get; set; }
+        public bool isStarred { get; set; }
+        public string token { get; set; }
         public string originalTitle { get; set; }
         public string ProjectTitle { get { return isStarred ? _starredChar + originalTitle : originalTitle; } }
         public string LastChange { get; set; }

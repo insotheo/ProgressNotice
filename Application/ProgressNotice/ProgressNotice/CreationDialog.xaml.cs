@@ -1,6 +1,6 @@
-﻿using System.Windows;
+﻿using ProgressNotice.Data;
 using System;
-using ProgressNotice.Data;
+using System.Windows;
 
 namespace ProgressNotice
 {
@@ -26,7 +26,7 @@ namespace ProgressNotice
         {
             try
             {
-                if(TitleTB.Text.Trim() == String.Empty)
+                if (TitleTB.Text.Trim() == String.Empty)
                 {
                     throw new Exception("Project title can't be empty");
                 }
@@ -38,7 +38,7 @@ namespace ProgressNotice
                 IsCreated = true;
                 this.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }

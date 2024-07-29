@@ -1,11 +1,10 @@
 ﻿using Markdig;
 using Microsoft.Win32;
-using System.IO;
-using System.Windows;
-using System;
 using ProgressNotice.Data;
+using System;
+using System.IO;
 using System.IO.Compression;
-
+using System.Windows;
 using static ProgressNotice.Data.GlobalProjectVars;
 
 namespace ProgressNotice
@@ -35,14 +34,14 @@ namespace ProgressNotice
                 Filter = "Archive | *.zip",
                 AddExtension = true
             };
-            if(saveArchive.ShowDialog() == true)
+            if (saveArchive.ShowDialog() == true)
             {
                 using (ZipArchive archive = ZipFile.Open(saveArchive.FileName, ZipArchiveMode.Create))
                 {
                     foreach (Log log in logs.LogsList)
                     {
                         string name = log.LogName.Trim();
-                        foreach(char invalid in Path.GetInvalidFileNameChars())
+                        foreach (char invalid in Path.GetInvalidFileNameChars())
                         {
                             if (name.Contains(invalid))
                             {
@@ -51,7 +50,7 @@ namespace ProgressNotice
                         }
                         name = $"{log.LogDateTime.Hour}{log.LogDateTime.Minute}{log.LogDateTime.Second}{log.LogDateTime.Millisecond}_" + name + ".md";
                         ZipArchiveEntry entry = archive.CreateEntry(name);
-                        using(StreamWriter writer = new StreamWriter(entry.Open()))
+                        using (StreamWriter writer = new StreamWriter(entry.Open()))
                         {
                             writer.Write(log.LogDescriptionMD);
                         }

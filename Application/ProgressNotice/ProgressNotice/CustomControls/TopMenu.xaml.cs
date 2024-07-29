@@ -43,7 +43,7 @@ namespace ProgressNotice.CustomControls
             {
                 return;
             }
-            if(parent.WindowState != WindowState.Maximized)
+            if (parent.WindowState != WindowState.Maximized)
             {
                 windowStateChangedByControl = true;
                 parent.WindowStyle = WindowStyle.SingleBorderWindow;
@@ -61,9 +61,9 @@ namespace ProgressNotice.CustomControls
 
         private void TopAreaMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(e.LeftButton == MouseButtonState.Pressed)
+            if (e.LeftButton == MouseButtonState.Pressed)
             {
-                if(Window.GetWindow(this).WindowState == WindowState.Maximized)
+                if (Window.GetWindow(this).WindowState == WindowState.Maximized)
                 {
                     Window parentWindow = Window.GetWindow(this);
 
@@ -100,7 +100,7 @@ namespace ProgressNotice.CustomControls
 
         internal void ShowIcon()
         {
-            if(Window.GetWindow(this).Icon != null)
+            if (Window.GetWindow(this).Icon != null)
             {
                 IconBackground.Visibility = Visibility.Visible;
                 WindowIcon.Visibility = Visibility.Visible;
@@ -129,7 +129,7 @@ namespace ProgressNotice.CustomControls
 
         private void SetResizeBtnIcon()
         {
-            if(Window.GetWindow(this).WindowState == WindowState.Maximized)
+            if (Window.GetWindow(this).WindowState == WindowState.Maximized)
             {
                 ResizeBtn.Content = "◱";
             }

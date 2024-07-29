@@ -1,6 +1,6 @@
-﻿using System;
+﻿using ProgressNotice.Data;
+using System;
 using System.Windows;
-using ProgressNotice.Data;
 
 namespace ProgressNotice
 {
