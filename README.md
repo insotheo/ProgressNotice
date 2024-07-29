@@ -51,7 +51,7 @@ This project is licensed under the Apache-2.0 License. See the [LICENSE](LICENSE
 
 ## Acknowledgements:
 - [Logo author](https://www.iconfinder.com/emka-angelina)
-- [WPF](https://docs.microsoft.com/en-us/dotnet/desktop/wpf/?view=netdesktop-6.0) - For building the desktop application framework.
+- [WPF](https://docs.microsoft.com/en-us/dotnet/desktop/wpf/?view=netdesktop-6.0)
 - [Markdig](https://github.com/xoofx/markdig)
 - [WebView2](https://learn.microsoft.com/en-us/microsoft-edge/webview2/)
 - [Newtonsoft.Json](https://www.newtonsoft.com/json)
