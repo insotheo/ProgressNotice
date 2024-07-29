@@ -40,7 +40,7 @@ To get started with ProgressNotice, follow these steps:
 *Main Interface*
 
 ![Creating new project](./READMEResources/CreationProjectWindow.png)
-*Creating new projectr*
+*Creating new project*
 
 ![Logs](./READMEResources/LogsPreview.png)
 *Logs*
