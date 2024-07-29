@@ -20,6 +20,7 @@ namespace ProgressNotice.CustomControls
             HideBtn.Click += HideBtnClick;
             ResizeBtn.Click += ResizeBtnClick;
             CloseBtn.Click += CloseBtnClick;
+            WindowIcon.ToolTip = "Application version: " + Application.ResourceAssembly.GetName().Version.ToString();
         }
 
         private void CloseBtnClick(object sender, RoutedEventArgs e)
@@ -95,6 +96,16 @@ namespace ProgressNotice.CustomControls
             HideBtn.Visibility = hide ? Visibility.Visible : Visibility.Collapsed;
             ResizeBtn.Visibility = resize ? Visibility.Visible : Visibility.Collapsed;
             CloseBtn.Visibility = close ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        internal void ShowIcon()
+        {
+            if(Window.GetWindow(this).Icon != null)
+            {
+                IconBackground.Visibility = Visibility.Visible;
+                WindowIcon.Visibility = Visibility.Visible;
+                WindowIcon.Source = Window.GetWindow(this).Icon;
+            }
         }
 
         private void ParentWindowStateChanged(object sender, EventArgs e)

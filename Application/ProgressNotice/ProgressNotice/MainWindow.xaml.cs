@@ -43,12 +43,13 @@ namespace ProgressNotice
 
             InitializeComponent();
             TopMenuTM.Setup();
+            TopMenuTM.ShowIcon();
 
             AddNewProjectBtn.Click += AddNewProject;
             RemoveProjectBtn.Click += RemoveProject;
             ProjectsLB.SelectionChanged += OnProjectSelected;
             SearchBtn.Click += Search;
-
+            
             RefreshListBox();
         }
 

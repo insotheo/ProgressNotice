@@ -9,6 +9,7 @@
         Title="ProgressNotice - main page"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
+        Icon=".\ProgressNoticeLogo.ico"
         Height="600" Width="1100"
         MinHeight="400" MinWidth="510"
         Background="{StaticResource WindowBackgroundDefalutColor}">

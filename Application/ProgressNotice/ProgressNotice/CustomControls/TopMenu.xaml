@@ -11,7 +11,17 @@
             <SolidColorBrush Opacity="0.25" Color="Black"/>
         </Border.Background>
         <Grid Margin="0 -1">
-            <TextBlock Name="WindowTitleTB" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+            <StackPanel VerticalAlignment="Center" Margin="3 0" HorizontalAlignment="Left" Orientation="Horizontal">
+                <Border Name="IconBackground" Margin="0 0 3 0" CornerRadius="2" Background="White" BorderThickness="0" Visibility="Collapsed">
+                    <Border.Resources>
+                        <Style TargetType="{x:Type ToolTip}" BasedOn="{StaticResource {x:Type ToolTip}}">
+                            <Setter Property="Background" Value="Black"/>
+                        </Style>
+                    </Border.Resources>
+                    <Image Name="WindowIcon" Width="24" Height="24" HorizontalAlignment="Center" Margin="1" Visibility="Collapsed"/>
+                </Border>
+                <TextBlock Name="WindowTitleTB" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+            </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <StackPanel.Resources>
                     <Style TargetType="{x:Type Button}"

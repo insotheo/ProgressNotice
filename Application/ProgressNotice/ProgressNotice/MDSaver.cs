@@ -33,7 +33,7 @@ namespace ProgressNotice
             {
                 InitialDirectory = Path.Combine("C:", "Users", Environment.UserName, "Documents"),
                 Filter = "Archive | *.zip",
-                AddExtension = true //!
+                AddExtension = true
             };
             if(saveArchive.ShowDialog() == true)
             {
