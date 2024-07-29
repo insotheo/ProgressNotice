@@ -107,6 +107,7 @@
 
                     <MenuItem Header="..." Name="ChangeLogMenu" Visibility="Collapsed">
                         <MenuItem Header="Add new" Name="AddNewLogBtn"/>
+                        <MenuItem Header="Save to zip archive" Name="SaveLogsToArchiveBtn"/>
                     </MenuItem>
                     
                 </Menu>

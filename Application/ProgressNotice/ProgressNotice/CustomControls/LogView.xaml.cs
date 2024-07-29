@@ -26,6 +26,12 @@ namespace ProgressNotice.CustomControls
             UpdatePreviewAndWidth();
             EditTitleBtn.Click += EditTitle;
             EditDescriptionBtn.Click += EditDescription;
+            SaveDescriptionToFileBtn.Click += SaveDescriptionToFile;
+        }
+
+        private void SaveDescriptionToFile(object sender, RoutedEventArgs e)
+        {
+            MDSaver.Save(log.LogDescriptionMD);
         }
 
         private void UpdatePreviewAndWidth()

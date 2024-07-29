@@ -16,6 +16,7 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                 <Button Content="Edit title" Name="EditTitleBtn"/>
                 <Button Content="Edit description" Name="EditDescriptionBtn"/>
+                <Button Content="Save description to file" Name="SaveDescriptionToFileBtn"/>
             </StackPanel>
         </Border>
         <Border Margin="2" BorderThickness="1"
