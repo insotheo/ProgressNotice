@@ -63,6 +63,7 @@ namespace ProgressNotice.CustomControls
                     RefreshTree();
                     int index = (Window.GetWindow(this) as MainWindow).GetSelectedItemIndex();
                     (Window.GetWindow(this) as MainWindow).previews[index].LastChange = prj.LastChangeDate.ToString("g");
+                    (Window.GetWindow(this) as MainWindow).SaveList();
                     (Window.GetWindow(this) as MainWindow).RefreshListBox();
                     (Window.GetWindow(this) as MainWindow).SetSelectedItemIndex(index);
                 }
